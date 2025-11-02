@@ -1,9 +1,10 @@
 ﻿using Api_Project.Context;
+using Api_Project.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Api_Project.Repository
 {
-    public class GenericRepository<TEntity> where TEntity : class
+    public class GenericRepository<TEntity> where TEntity : BaseEntity
     {
         private readonly ApiDbContext _context;
         public GenericRepository(ApiDbContext _context)
@@ -29,9 +30,18 @@ namespace Api_Project.Repository
         {
             _context.Set<TEntity>().Update(entity);
         }
-        public void Delete(TEntity entity)
+        //public void Delete(TEntity entity)
+        //{
+        //    _context.Set<TEntity>().Remove(entity);
+        //}
+        public void Delete(int id)
         {
-            _context.Set<TEntity>().Remove(entity);
+            var entity = _context.Set<TEntity>().Find(id);
+            if (entity != null)
+            {
+                entity.IsDeleted = true;
+                _context.Set<TEntity>().Update(entity);
+            }
         }
         public void Save()
         {

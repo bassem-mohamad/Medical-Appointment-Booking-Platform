@@ -106,7 +106,7 @@ namespace Api_Project.Controllers
             var specialty = unitWork.SpecialtyRepo.GetById(id);
             if (specialty == null)
                 return BadRequest("Not Found");
-            unitWork.SpecialtyRepo.Delete(specialty);
+            unitWork.SpecialtyRepo.Delete(specialty.Id);
             unitWork.Save();
             return NoContent();
         }

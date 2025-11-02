@@ -9,6 +9,7 @@ namespace Api_Project.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class LocationController : ControllerBase
     {
         private readonly UnitWork unitWork;
@@ -18,7 +19,6 @@ namespace Api_Project.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public ActionResult GetLocations()
         {
             var locations = unitWork.LocationRepo.GetAll();
@@ -106,7 +106,7 @@ namespace Api_Project.Controllers
             var location = unitWork.LocationRepo.GetById(id);
             if (location == null)
                 return BadRequest("Not found");
-            unitWork.LocationRepo.Delete(location);
+            unitWork.LocationRepo.Delete(location.Id);
             unitWork.Save();
             return NoContent();
         }
