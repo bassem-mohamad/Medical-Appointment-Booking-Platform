@@ -71,7 +71,7 @@ namespace Api_Project.Controllers
             //Generate token
             var token = GenerateToken(user);
 
-            return Ok(token);   
+            return Ok(new { Token = token });
         }
 
         private string GenerateToken(AppUser user)

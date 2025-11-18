@@ -1,4 +1,5 @@
 ﻿using Api_Project.DTOs.Location;
+using Api_Project.Models;
 using Api_Project.UnitOfWork;
 
 namespace Api_Project.Services
@@ -55,7 +56,7 @@ namespace Api_Project.Services
 
         public void Create(CreateLocationDto locationDto)
         {
-            var location = new Api_Project.Models.Location
+            var location = new Location
             {
                 City = locationDto.City,
                 Area = locationDto.Area,

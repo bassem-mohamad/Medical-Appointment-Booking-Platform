@@ -2,6 +2,7 @@ using System.Text;
 using Api_Project.Context;
 using Api_Project.Models;
 using Api_Project.Repository;
+using Api_Project.Services;
 using Api_Project.UnitOfWork;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -20,6 +21,22 @@ namespace Api_Project
             builder.Services.AddScoped<UnitWork>();
             builder.Services.AddScoped(typeof(GenericRepository<Location>));
             builder.Services.AddScoped(typeof(GenericRepository<Specialty>));
+            builder.Services.AddScoped(typeof(GenericRepository<Doctor>));
+            builder.Services.AddScoped(typeof(GenericRepository<Patient>));
+            builder.Services.AddScoped(typeof(GenericRepository<Appointment>));
+            builder.Services.AddScoped(typeof(GenericRepository<DoctorSchedule>));
+            builder.Services.AddScoped(typeof(GenericRepository<Review>));
+            builder.Services.AddScoped(typeof(GenericRepository<TimeSlot>));
+
+            // Register Services
+            builder.Services.AddScoped<LocationService>();
+            builder.Services.AddScoped<SpecialtyService>();
+            builder.Services.AddScoped<DoctorService>();
+            builder.Services.AddScoped<PatientService>();
+            builder.Services.AddScoped<AppointmentService>();
+            builder.Services.AddScoped<DoctorScheduleService>();
+            builder.Services.AddScoped<ReviewService>();
+            builder.Services.AddScoped<TimeSlotService>();
 
             builder.Services.AddControllers();
 
@@ -40,7 +57,7 @@ namespace Api_Project
             {
                 options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
                 {
-                    Title = "My API",
+                    Title = "Medical Appointment Booking API",
                     Version = "v1",
                     Description = "API with JWT Authentication"
                 });
@@ -104,7 +121,7 @@ namespace Api_Project
                 //app.UseSwaggerUI();
                 app.UseSwaggerUI(op =>
                 {
-                    op.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                    op.SwaggerEndpoint("/swagger/v1/swagger.json", "Medical API V1");
                 });
             }
 

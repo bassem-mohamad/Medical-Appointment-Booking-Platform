@@ -16,4 +16,5 @@ namespace Api_Project.DTOs.AppUser
         public string Email { get; set; }
         //public UserType UserType { get; set; }
     }
+
 }

@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Api_Project.Models
 {
-    // 7. موديل المواعيد المتاحة
     public class TimeSlot : BaseEntity
     {
         [Required]
